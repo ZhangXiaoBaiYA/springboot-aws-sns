@@ -18,7 +18,7 @@ import com.amazonaws.services.sns.AmazonSNSClient;
  * @author zhangxiaobai
  */
 @Service
-public class AwsSNSService implements SMSService {
+public class AwsSNSService implements MessageService {
     private static final Logger LOGGER = LoggerFactory.getLogger(AwsSNSService.class);
 
     @Value(value = "${cloud.aws.region.static}")

@@ -1,6 +1,7 @@
 package cn.lastgo.sns.controller;
 
 import cn.lastgo.sns.service.AwsSNSService;
+import cn.lastgo.sns.service.SnsNotificationSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,12 +14,27 @@ public class Test {
     @Autowired
     AwsSNSService awsSNSService;
 
+    @Autowired
+    SnsNotificationSender snsNotificationSender;
+
 
     @Value( value = "${aws.sns.topic}" )
     private String              topicArn;
 
-    @GetMapping("/index")
-    public void index(String topic){
+    //使用前，先确认topic是否存在，不存在则调用创建接口
+    @GetMapping("/send")
+    public void send(String topicName){
+        if(topicName == null || topicName.equals("")){
+            System.out.println("Topic name can not null");
+            return;
+        }
+        snsNotificationSender.send("test transfer","test sns message");
+    }
+
+
+    //--------------------不使用template 进行消息发送--------------------------
+    @GetMapping("/send1")
+    public void send1(String topic){
         String arn = this.topicArn;
         if(topic != null && !topic.equals("")){
             arn = topic;

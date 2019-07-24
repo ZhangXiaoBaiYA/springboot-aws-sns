@@ -1,6 +1,6 @@
 package cn.lastgo.sns.service;
 
-public interface SMSService
+public interface MessageService
 {
     String sendMessage(final String topicArn, final String message );
     String createTopic(final String topicName);
