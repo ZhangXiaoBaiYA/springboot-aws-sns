@@ -10,3 +10,13 @@
 + SQS 订阅 SNS
 
 ### 说明
+
+
+
+### 配置文件 application.properties
+```
+# request key
+cloud.aws.credentials.accessKey=请输入您的凭证KEY
+cloud.aws.credentials.secretKey=请输入您的凭证密钥
+cloud.aws.region.static=ap-northeast-1
+cloud.aws.endpoint.static=sqs.ap-northeast-1.amazonaws.com
